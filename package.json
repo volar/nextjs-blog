@@ -6,11 +6,44 @@
     "start": "next start"
   },
   "dependencies": {
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "framer-motion": "^6.5.1",
+    "lodash": "^4.17.21",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "engines": {
     "node": ">=18"
+  },
+  "eslintConfig": {
+    "extends": [
+      "next",
+      "next/core-web-vitals",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": ":not(BinaryExpression:matches([operator='!=='], [operator='==='])) > Literal[value=null]",
+          "message": "Usage of \"null\" is deprecated in this project, except when received from legacy APIs; use \"undefined\" instead."
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.tsx"
+        ],
+        "rules": {
+          "no-restricted-syntax": "off"
+        }
+      }
+    ]
+  },
+  "devDependencies": {
+    "prettier": "3.0.3"
   }
 }
